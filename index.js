@@ -19,7 +19,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const testsRouter = require("./routes/test");
-app.use("/", cors(), testsRouter);
+// app.use("/", cors(), testsRouter);
+app.use(
+  cors({
+    exposedHeaders: ["Location"]
+  })
+);
+app.use("/api/v1", testsRouter);
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT);

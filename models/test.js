@@ -6,6 +6,14 @@ const testSchema = new Schema({
   patientHeight: Number,
   patientWeight: Number,
   patientDOB: Date,
+  patientNotes: String,
+
+  testDate: Date,
+  testDistance: Number,
+  testNotes: String,
+
+  completionTime: Number,
+  completionNotes: String
 });
 
 mongoose.model('tests', testSchema);

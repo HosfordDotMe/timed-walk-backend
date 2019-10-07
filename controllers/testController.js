@@ -1,10 +1,15 @@
 const mongoose = require("mongoose");
 const Test = mongoose.model("tests");
 
+// Set to send tests in descending order
+// This can be changed in the future and
+// handled on the frontend
 exports.test_list = function(req, res) {
-  Test.find({}).then(function(tests) {
-    res.send(tests);
-  });
+  Test.find({})
+    .sort({ '_id': 'desc' })
+    .then(function(tests) {
+      res.send(tests);
+    });
 };
 
 exports.test_detail = function(req, res) {
@@ -19,11 +24,20 @@ exports.test_create_post = (req, res, next) => {
     patientHeight: req.body.patientHeight,
     patientWeight: req.body.patientWeight,
     patientDOB: req.body.patientDOB,
+    patientNotes: req.body.patientNotes,
+
+    testDate: req.body.testDate,
+    testDistance: req.body.testDistance,
+    testNotes: req.body.testNotes,
+
+    completionTime: req.body.completionTime,
+    completionNotes: req.body.completionNotes,
   });
   test.save(function(err) {
     if (err) {
       return next(err);
     }
+    // TODO: Research better implementation
     res.location(`/test/${test._id}`);
     res.sendStatus(201);
   });
