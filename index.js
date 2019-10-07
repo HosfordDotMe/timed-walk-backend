@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const keys = require('./config/dev');
+const keys = require('./config/keys');
 require('./models/test')
 const app = express();
 
