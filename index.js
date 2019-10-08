@@ -26,5 +26,9 @@ app.use(
 );
 app.use("/api/v1", testsRouter);
 
+app.get("/", function(req, res) {
+  res.send({ Server: "Running" });
+})
+
 const PORT = process.env.PORT || 5000
 app.listen(PORT);
